@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Dev Learning Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --html-color: #e34f26;
+            --css-color: #264de4;
+            --js-color: #f7df1e;
+            --bootstrap-color: #7952b3;
+            --fullstack-color: #20c997;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --border-radius: 0.75rem;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            scroll-behavior: smooth;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .html-section .section-title::after {
+            background: var(--html-color);
+        }
+
+        .css-section .section-title::after {
+            background: var(--css-color);
+        }
+
+        .js-section .section-title::after {
+            background: var(--js-color);
+        }
+
+        .bootstrap-section .section-title::after {
+            background: var(--bootstrap-color);
+        }
+
+        .fullstack-section .section-title::after {
+            background: var(--fullstack-color);
+        }
+
+        .custom-card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            height: 100%;
+        }
+
+        .custom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .code-example {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .code-header {
+            background: var(--bg-light);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .code-tabs {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .code-tab {
+            padding: 0.5rem 1rem;
+            background: var(--border-color);
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .code-tab.active {
+            color: white;
+        }
+
+        .html-section .code-tab.active {
+            background: var(--html-color);
+        }
+
+        .css-section .code-tab.active {
+            background: var(--css-color);
+        }
+
+        .js-section .code-tab.active {
+            background: var(--js-color);
+            color: var(--text-dark);
+        }
+
+        .bootstrap-section .code-tab.active {
+            background: var(--bootstrap-color);
+        }
+
+        .fullstack-section .code-tab.active {
+            background: var(--fullstack-color);
+        }
+
+        .code-content {
+            padding: 1.5rem;
+        }
+
+        .code-block {
+            background: #1a1a1a;
+            color: #e5e5e5;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        .counter-demo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .counter-btn {
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .html-section .counter-btn {
+            background: var(--html-color);
+        }
+
+        .css-section .counter-btn {
+            background: var(--css-color);
+        }
+
+        .js-section .counter-btn {
+            background: var(--js-color);
+            color: var(--text-dark);
+        }
+
+        .bootstrap-section .counter-btn {
+            background: var(--bootstrap-color);
+        }
+
+        .fullstack-section .counter-btn {
+            background: var(--fullstack-color);
+        }
+
+        .task-manager {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .html-section .tech-icon {
+            color: var(--html-color);
+        }
+
+        .css-section .tech-icon {
+            color: var(--css-color);
+        }
+
+        .js-section .tech-icon {
+            color: var(--js-color);
+        }
+
+        .bootstrap-section .tech-icon {
+            color: var(--bootstrap-color);
+        }
+
+        .fullstack-section .tech-icon {
+            color: var(--fullstack-color);
+        }
+
+        .footer {
+            background: white;
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+           
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        pre {
+            margin: 0;
+        }
+
+        .keyword {
+            color: #ff79c6;
+        }
+
+        .selector {
+            color: #50fa7b;
+        }
+
+        .property {
+            color: #66d9ef;
+        }
+
+        .value {
+            color: #f1fa8c;
+        }
+
+        .comment {
+            color: #6272a4;
+        }
+
+        .function {
+            color: #ff5555;
+        }
+        
+        .definition-box {
+            background: white;
+            border-left: 4px solid;
+            border-radius: 4px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .html-section .definition-box {
+            border-left-color: var(--html-color);
+        }
+        
+        .css-section .definition-box {
+            border-left-color: var(--css-color);
+        }
+        
+        .js-section .definition-box {
+            border-left-color: var(--js-color);
+        }
+        
+        .bootstrap-section .definition-box {
+            border-left-color: var(--bootstrap-color);
+        }
+        
+        .fullstack-section .definition-box {
+            border-left-color: var(--fullstack-color);
+        }
+        
+        .diagram {
+            width: 100%;
+            max-width: 600px;
+            margin: 2rem auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#home">Web Dev Portfolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#fullstack">Full Stack</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#html">HTML</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#css">CSS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#javascript">JavaScript</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#bootstrap">Bootstrap</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <div class="col-12 text-center">
+                    <h1 class="display-4 fw-bold mb-3">Web Development Learning Portfolio</h1>
+                    <p class="lead mb-4">A comprehensive guide to Full Stack Development with HTML, CSS, JavaScript and Bootstrap</p>
+                    <div class="d-flex justify-content-center gap-3 mb-4 flex-wrap">
+                        <a href="#fullstack" class="btn btn-light btn-lg px-4">Start Learning</a>
+                        <a href="#javascript" class="btn btn-outline-light btn-lg px-4">Try Examples</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Stack Section -->
+    <section id="fullstack" class="section fullstack-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Full Stack Development</h2>
+                <p class="lead text-muted">Building complete web applications from front to back</p>
+            </div>
+           
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <div class="definition-box">
+                        <p>The phrase "full stack development" refers to the process of creating both the back-end and front-end of a web application. The front-end is what the user sees on the screen and interacts with (pages, buttons, images, and forms), while the back-end handles request processing, handling the database and ensuring that everything goes smoothly "behind the curtain".</p>
+                        
+                        <p>A full-stack developer is proficient in the technologies on both the client-side and the server-side, including HTML, CSS, JavaScript, and more including databases like MySQL or MongoDB, as with PHP, Python, or Node.js.</p>
+                        
+                        <p>When a user logs into a website, for example, the front end displays a login form and the back end confirms the user's credentials against a database, with the result being a success or failure message. Because it enables a single person to manage an entire application, including its user interface design, full stack development is highly valued for data storage and retrieval in an effective manner.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-md-6">
+                    <div class="custom-card text-center">
+                        <div class="tech-icon">
+                            <i class="bi bi-window"></i>
+                        </div>
+                        <h5 class="mb-3">Frontend Development</h5>
+                        <p class="text-muted">Creating the user interface and experience with HTML, CSS, and JavaScript that runs in the browser.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="custom-card text-center">
+                        <div class="tech-icon">
+                            <i class="bi bi-server"></i>
+                        </div>
+                        <h5 class="mb-3">Backend Development</h5>
+                        <p class="text-muted">Building server-side logic, APIs, and database interactions that power the application.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 300'%3E%3Crect x='50' y='50' width='200' height='200' fill='%23264de4' opacity='0.7' rx='15'/%3E%3Ctext x='150' y='135' font-family='Arial' font-size='18' fill='white' text-anchor='middle'%3EFrontend%3C/text%3E%3Crect x='350' y='50' width='200' height='200' fill='%23e34f26' opacity='0.7' rx='15'/%3E%3Ctext x='450' y='135' font-family='Arial' font-size='18' fill='white' text-anchor='middle'%3EBackend%3C/text%3E%3Cpath d='M250 150 L350 150' stroke='%2320c997' stroke-width='4' fill='none'/%3E%3Ctext x='300' y='140' font-family='Arial' font-size='16' fill='%2320c997' text-anchor='middle'%3EFull Stack%3C/text%3E%3C/svg%3E" 
+                     alt="Full Stack Development Diagram" class="diagram">
+            </div>
+        </div>
+    </section>
+
+    <!-- HTML Section -->
+    <section id="html" class="section html-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>HTML</h2>
+                <p class="lead text-muted">The structure of every web page</p>
+            </div>
+           
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <div class="definition-box">
+                        <p>HTML or HyperText Markup Language is our fundamental means of creating and organizing material on the World Wide Web. It relies on a model of tags and attributes that are used to define the form and structure of webpages to provide the browsers with a way to render text files, images, links, form entries and other objects.</p>
+                        
+                        <p>HTML was invented in 1990 by Tim Berners-Lee, and has undergone versions since then, with HTML5 being the latest, its evolution being more multimedia and semantically based as well as supporting better accessibility.</p>
+                        
+                        <p>An HTML file begins with a <code>&lt;!DOCTYPE html&gt;</code> tag, then a <code>&lt;html&gt;</code> tag at the root of which <code>&lt;head&gt;</code> (metadata, title, stylesheet links) and <code>&lt;body&gt;</code> (visible content) sections are placed. Elements such as Tags <code>&lt;h1&gt;</code> used in headings, <code>&lt;p&gt;</code> used in paragraphs and <code>&lt;a&gt;</code> used in links and forms used in user input are used to structure the content.</p>
+                        
+                        <p>Attributes such as id, class or href have add-on functionality or styling hooks. HTML is cross-platform, compatible across devices and browsers and is used in conjunction with CSS to add styling and JavaScript to add interactivity.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="custom-card text-center">
+                        <div class="tech-icon">
+                            <i class="bi bi-code-slash"></i>
+                        </div>
+                        <h5 class="mb-3">Semantic Structure</h5>
+                        <p class="text-muted">HTML5 provides semantic elements like &lt;header&gt;, &lt;main&gt;, and &lt;footer&gt; that give meaning to your content.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="custom-card text-center">
+                        <div class="tech-icon">
+                            <i class="bi bi-input-cursor-text"></i>
+                        </div>
+                        <h5 class="mb-3">Forms & Inputs</h5>
+                        <p class="text-muted">Create interactive forms with various input types, labels, and validation attributes.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="custom-card text-center">
+                        <div class="tech-icon">
+                            <i class="bi bi-image"></i>
+                        </div>
+                        <h5 class="mb-3">Multimedia</h5>
+                        <p class="text-muted">Embed images, audio, video, and other media content directly into your web pages.</p>
+                    </div>
+                </div>
+            </div>
+ 
+            <div class="code-example">
+                <div class="code-header">
+                    <h5>Complete HTML Document Structure</h5>
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="showTab('html-code', this, 'html')">Code</button>
+                        <button class="code-tab" onclick="showTab('html-output', this, 'html')">Output</button>
+                    </div>
+                </div>
+               
+                <div id="html-code" class="tab-content">
+                    <div class="code-content">
+                        <div class="code-block">
+                            <pre><code><span class="comment">&lt;!DOCTYPE html&gt;</span>
+<span class="keyword">&lt;html</span> <span class="property">lang</span>=<span class="value">"en"</span><span class="keyword">&gt;</span>
+<span class="keyword">&lt;head&gt;</span>
+    <span class="keyword">&lt;meta</span> <span class="property">charset</span>=<span class="value">"UTF-8"</span><span class="keyword">&gt;</span>
+    <span class="keyword">&lt;meta</span> <span class="property">name</span>=<span class="value">"viewport"</span> <span class="property">content</span>=<span class="value">"width=device-width, initial-scale=1.0"</span><span class="keyword">&gt;</span>
+    <span class="keyword">&lt;title&gt;</span>My First Web Page<span class="keyword">&lt;/title&gt;</span>
+<span class="keyword">&lt;/head&gt;</span>
+<span class="keyword">&lt;body&gt;</span>
+    <span class="keyword">&lt;header&gt;</span>
+        <span class="keyword">&lt;h1&gt;</span>Welcome to My Website<span class="keyword">&lt;/h1&gt;</span>
+        <span class="keyword">&lt;nav&gt;</span>
+            <span class="keyword">&lt;ul&gt;</span>
+                <span class="keyword">&lt;li&gt;&lt;a</span> <span class="property">href</span>=<span class="value">"#home"</span><span class="keyword">&gt;</span>Home<span class="keyword">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="keyword">&lt;li&gt;&lt;a</span> <span class="property">href</span>=<span class="value">"#about"</span><span class="keyword">&gt;</span>About<span class="keyword">&lt;/a&gt;&lt;/li&gt;</span>
+            <span class="keyword">&lt;/ul&gt;</span>
+        <span class="keyword">&lt;/nav&gt;</span>
+    <span class="keyword">&lt;/header&gt;</span>
+   
+    <span class="keyword">&lt;main&gt;</span>
+        <span class="keyword">&lt;section</span> <span class="property">id</span>=<span class="value">"home"</span><span class="keyword">&gt;</span>
+            <span class="keyword">&lt;h2&gt;</span>Home Section<span class="keyword">&lt;/h2&gt;</span>
+            <span class="keyword">&lt;p&gt;</span>This is a paragraph of text on my website.<span class="keyword">&lt;/p&gt;</span>
+        <span class="keyword">&lt;/section&gt;</span>
+    <span class="keyword">&lt;/main&gt;</span>
+   
+    <span class="keyword">&lt;footer&gt;</span>
+        <span class="keyword">&lt;p&gt;</span>© 2023 My Website<span class="keyword">&lt;/p&gt;</span>
+    <span class="keyword">&lt;/footer&gt;</span>
+<span class="keyword">&lt;/body&gt;</span>
+<span class="keyword">&lt;/html&gt;</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+               
+                <div id="html-output" class="tab-content" style="display: none;">
+                    <div class="code-content">
+                        <header class="border-bottom mb-4 pb-3">
+                            <h1>Welcome to My Website</h1>
+                            <nav>
+                                <ul class="nav">
+                                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                                </ul>
+                            </nav>
+                        </header>
+                       
+                        <main>
+                            <section id="home" class="mb-4">
+                                <h2>Home Section</h2>
+                                <p>This is a paragraph of text on my website.</p>
+                            </section>
+                        </main>
+                       
+                        <footer class="border-top mt-4 pt-3">
+                            <p>© 2023 My Website</p>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- CSS Section -->
+    <section id="css" class="section css-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>CSS</h2>
+                <p class="lead text-muted">Styling and visual presentation</p>
+            </div>
+           
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <div class="definition-box">
+                        <p>The language used to enhance and style the aesthetic appeal of web pages produced using HTML is CSS. CSS regulates the look of content by controlling things like colors, fonts, spacing, and placement, while HTML organizes the information.</p>
+                        
+                        <p>By using CSS to write <code>h1 { color: darkblue; font-size: 30px; text-align: center; }</code>, for example, a heading can be made more appealing by changing its color, size, and alignment. Additionally, CSS allows developers to build responsive websites that adjust to various screen sizes, making sure pages look great on tablets, desktops, and mobile devices.</p>
+                        
+                        <p>Among the more sophisticated CSS features are grid or flexbox layouts, animations, and transitions, all of which enable the creation of intricate layouts with little code. CSS makes websites more maintainable and scalable by isolating style from structure. Because it allows developers to easily modify the full appearance of a website without changing its HTML content, it plays an important role in web development.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="custom-card text-center">
+                        <div class="tech-icon">
+                            <i class="bi bi-palette"></i>
+                        </div>
+                        <h5 class="mb-3">Visual Styling</h5>
+                        <p class="text-muted">Control colors, fonts, spacing, and other visual aspects of your web pages.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="custom-card text-center">
+                        <div class="tech-icon">
+                            <i class="bi bi-grid-3x3"></i>
+                        </div>
+                        <h5 class="mb-3">Layouts</h5>
+                        <p class="text-muted">Create flexible layouts with Flexbox and Grid for modern web design.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="custom-card text-center">
+                        <div class="tech-icon">
+                            <i class="bi bi-phone"></i>
+                        </div>
+                        <h5 class="mb-3">Responsiveness</h5>
+                        <p class="text-muted">Make your websites work on all screen sizes with media queries and responsive units.</p>
+                    </div>
+                </div>
+            </div>
+ 
+            <div class="code-example">
+                <div class="code-header">
+                    <h5>CSS Fundamentals & Responsive Design</h5>
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="showTab('css-code', this, 'css')">Code</button>
+                        <button class="code-tab" onclick="showTab('css-output', this, 'css')">Output</button>
+                    </div>
+                </div>
+               
+                <div id="css-code" class="tab-content">
+                    <div class="code-content">
+                        <div class="code-block">
+                            <pre><code><span class="comment">/* CSS Reset and Base Styles */</span>
+<span class="selector">*</span> {
+    <span class="property">margin</span>: <span class="value">0</span>;
+    <span class="property">padding</span>: <span class="value">0</span>;
+    <span class="property">box-sizing</span>: <span class="value">border-box</span>;
+}
+
+<span class="selector">body</span> {
+    <span class="property">font-family</span>: <span class="value">'Arial', sans-serif</span>;
+    <span class="property">line-height</span>: <span class="value">1.6</span>;
+    <span class="property">color</span>: <span class="value">#333</span>;
+}
+
+<span class="comment">/* Layout with Flexbox */</span>
+<span class="selector">.header</span> {
+    <span class="property">background</span>: <span class="value">linear-gradient(135deg, #667eea 0%, #764ba2 100%)</span>;
+    <span class="property">padding</span>: <span class="value">1rem 0</span>;
+    <span class="property">display</span>: <span class="value">flex</span>;
+    <span class="property">justify-content</span>: <span class="value">space-between</span>;
+    <span class="property">align-items</span>: <span class="value">center</span>;
+}
+
+<span class="comment">/* Responsive Grid */</span>
+<span class="selector">.grid</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">repeat(auto-fit, minmax(300px, 1fr))</span>;
+    <span class="property">gap</span>: <span class="value">2rem</span>;
+}
+
+<span class="comment">/* Media Queries for Responsiveness */</span>
+<span class="keyword">@media</span> (<span class="property">max-width</span>: <span class="value">768px</span>) {
+    <span class="selector">.nav</span> {
+        <span class="property">flex-direction</span>: <span class="value">column</span>;
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+               
+                <div id="css-output" class="tab-content" style="display: none;">
+                    <div class="code-content">
+                        <div class="border rounded p-3 mb-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem;">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h4 class="m-0">Website Header</h4>
+                                <nav>
+                                    <ul class="nav">
+                                        <li class="nav-item"><a class="nav-link text-light" href="#">Home</a></li>
+                                        <li class="nav-item"><a class="nav-link text-light" href="#">About</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="p-3 border rounded">
+                                    <h5>Grid Item 1</h5>
+                                    <p>This demonstrates a responsive grid layout.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="p-3 border rounded">
+                                    <h5>Grid Item 2</h5>
+                                    <p>Content automatically adjusts to screen size.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <button class="btn btn-primary">Styled Button</button>
+                            <button class="btn btn-outline-primary ms-2">Outline Button</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- JavaScript Section -->
+    <section id="javascript" class="section js-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>JavaScript</h2>
+                <p class="lead text-muted">Interactivity and dynamic behavior</p>
+            </div>
+           
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <div class="definition-box">
+                        <p>JavaScript (JS) describes the language in which web pages are designed to become interactive. Whereas HTML is used to structure a page and CSS to make it pretty, JavaScript can also be used to give it a little bit of behavior: responding to button presses, validating forms, updating a page without reloading, even driving animations.</p>
+                        
+                        <p>It is a browser-based program so users do not need an additional tool and is flexible enough to be utilized on both the front-end (websites) and the back-end (with environments such as Node.js). In brief, JavaScript is the ingredient that makes a plain webpage to be dynamic and friendly to users.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="custom-card text-center">
+                        <div class="tech-icon">
+                            <i class="bi bi-lightning"></i>
+                        </div>
+                        <h5 class="mb-3">DOM Manipulation</h5>
+                        <p class="text-muted">Dynamically modify page content, structure, and style in response to user actions.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="custom-card text-center">
+                        <div class="tech-icon">
+                            <i class="bi bi-arrow-left-right"></i>
+                        </div>
+                        <h5 class="mb-3">API Interactions</h5>
+                        <p class="text-muted">Fetch data from servers and update your web page without requiring a refresh.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="custom-card text-center">
+                        <div class="tech-icon">
+                            <i class="bi bi-gear"></i>
+                        </div>
+                        <h5 class="mb-3">Event Handling</h5>
+                        <p class="text-muted">Respond to user interactions like clicks, keyboard input, and form submissions.</p>
+                    </div>
+                </div>
+            </div>
+ 
+            <div class="code-example">
+                <div class="code-header">
+                    <h5>Interactive JavaScript Examples</h5>
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="showTab('js-code', this, 'js')">Code</button>
+                        <button class="code-tab" onclick="showTab('js-preview', this, 'js')">Interactive Demo</button>
+                    </div>
+                </div>
+               
+                <div id="js-code" class="tab-content">
+                    <div class="code-content">
+                        <div class="code-block">
+                            <pre><code><span class="comment">// Counter functionality</span>
+<span class="keyword">let</span> count = <span class="value">0</span>;
+<span class="keyword">const</span> counterDisplay = document.<span class="function">getElementById</span>(<span class="value">'counter-display'</span>);
+
+<span class="keyword">function</span> <span class="function">updateCounter</span>() {
+    counterDisplay.textContent = count;
+}
+
+<span class="comment">// Event listeners for buttons</span>
+document.<span class="function">getElementById</span>(<span class="value">'increment'</span>).<span class="function">addEventListener</span>(<span class="value">'click'</span>, () <span class="keyword">=&gt;</span> {
+    count++;
+    <span class="function">updateCounter</span>();
+});
+
+document.<span class="function">getElementById</span>(<span class="value">'decrement'</span>).<span class="function">addEventListener</span>(<span class="value">'click'</span>, () <span class="keyword">=&gt;</span> {
+    count--;
+    <span class="function">updateCounter</span>();
+});
+
+<span class="comment">// Task Manager functionality</span>
+<span class="keyword">let</span> tasks = [<span class="value">'Learn JavaScript'</span>, <span class="value">'Build a project'</span>];
+<span class="keyword">const</span> taskList = document.<span class="function">getElementById</span>(<span class="value">'task-list'</span>);
+
+<span class="keyword">function</span> <span class="function">renderTasks</span>() {
+    taskList.innerHTML = <span class="value">''</span>;
+    tasks.<span class="function">forEach</span>((task, index) <span class="keyword">=&gt;</span> {
+        <span class="keyword">const</span> li = document.<span class="function">createElement</span>(<span class="value">'li'</span>);
+        li.className = <span class="value">'list-group-item d-flex justify-content-between align-items-center'</span>;
+        li.innerHTML = <span class="value">`
+            &lt;span&gt;</span>${task}<span class="value">&lt;/span&gt;
+            &lt;button class="btn btn-sm btn-danger" onclick="removeTask(</span>${index}<span class="value">)"&gt;×&lt;/button&gt;
+        `</span>;
+        taskList.<span class="function">appendChild</span>(li);
+    });
+}
+
+<span class="keyword">function</span> <span class="function">addTask</span>() {
+    <span class="keyword">const</span> taskInput = document.<span class="function">getElementById</span>(<span class="value">'task-input'</span>);
+    <span class="keyword">const</span> newTask = taskInput.value.<span class="function">trim</span>();
+    <span class="keyword">if</span> (newTask) {
+        tasks.<span class="function">push</span>(newTask);
+        taskInput.value = <span class="value">''</span>;
+        <span class="function">renderTasks</span>();
+    }
+}
+
+<span class="keyword">function</span> <span class="function">removeTask</span>(index) {
+    tasks.<span class="function">splice</span>(index, <span class="value">1</span>);
+    <span class="function">renderTasks</span>();
+}
+
+<span class="comment">// Initialize on page load</span>
+<span class="function">updateCounter</span>();
+<span class="function">renderTasks</span>();</code></pre>
+                        </div>
+                    </div>
+                </div>
+               
+                <div id="js-preview" class="tab-content" style="display: none;">
+                    <div class="code-content">
+                        <!-- Interactive Counter -->
+                        <div class="mb-4 p-3 border rounded">
+                            <h5 class="mb-3">Interactive Counter</h5>
+                            <div class="counter-demo">
+                                <button id="decrement" class="counter-btn">-</button>
+                                <span id="counter-display" class="fw-bold fs-4">0</span>
+                                <button id="increment" class="counter-btn">+</button>
+                            </div>
+                        </div>
+ 
+                        <!-- Task Manager -->
+                        <div class="task-manager">
+                            <h5 class="mb-3">Task Manager</h5>
+                            <div class="d-flex gap-2 mb-3">
+                                <input type="text" id="task-input" class="form-control" placeholder="Add a new task...">
+                                <button id="add-task" class="counter-btn">Add</button>
+                            </div>
+                            <ul id="task-list" class="list-group"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- Bootstrap Section -->
+    <section id="bootstrap" class="section bootstrap-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Bootstrap Framework</h2>
+                <p class="lead text-muted">Rapid responsive development</p>
+            </div>
+           
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <div class="definition-box">
+                        <p>Bootstrap is also a widespread front-end framework that assists one in designing responsive and contemporary-looking websites rather shortly. It is accompanied by a set of pre-designed components (including buttons, navigation bars, forms and grids), which are created using HTML, CSS and JavaScript.</p>
+                        
+                        <p>Developers are no longer required to write custom styles by scratch instead, they are allowed to make use of the readily available classes of the same in Bootstrap and get a professional design instantly. It also has responsive grid system that makes the websites appear good on any device such as computers and mobile phones.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="custom-card text-center">
+                        <div class="tech-icon">
+                            <i class="bi bi-columns"></i>
+                        </div>
+                        <h5 class="mb-3">Responsive Grid</h5>
+                        <p class="text-muted">Build responsive layouts quickly with Bootstrap's flexbox grid system.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="custom-card text-center">
+                        <div class="tech-icon">
+                            <i class="bi bi-menu-button-wide"></i>
+                        </div>
+                        <h5 class="mb-3">Prebuilt Components</h5>
+                        <p class="text-muted">Use ready-made components like navbars, cards, and modals for rapid development.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="custom-card text-center">
+                        <div class="tech-icon">
+                            <i class="bi bi-puzzle"></i>
+                        </div>
+                        <h5 class="mb-3">Utilities</h5>
+                        <p class="text-muted">Quickly style elements with Bootstrap's utility classes for spacing, colors, and more.</p>
+                    </div>
+                </div>
+            </div>
+ 
+            <div class="code-example">
+                <div class="code-header">
+                    <h5>Bootstrap Portfolio Components</h5>
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="showTab('bootstrap-code', this, 'bootstrap')">Code</button>
+                        <button class="code-tab" onclick="showTab('bootstrap-output', this, 'bootstrap')">Output</button>
+                    </div>
+                </div>
+               
+                <div id="bootstrap-code" class="tab-content">
+                    <div class="code-content">
+                        <div class="code-block">
+                            <pre><code><span class="comment">&lt;!-- Bootstrap Navigation --&gt;</span>
+<span class="keyword">&lt;nav</span> <span class="property">class</span>=<span class="value">"navbar navbar-expand-lg navbar-dark bg-primary"</span><span class="keyword">&gt;</span>
+    <span class="keyword">&lt;div</span> <span class="property">class</span>=<span class="value">"container"</span><span class="keyword">&gt;</span>
+        <span class="keyword">&lt;a</span> <span class="property">class</span>=<span class="value">"navbar-brand"</span> <span class="property">href</span>=<span class="value">"#"</span><span class="keyword">&gt;</span>My Portfolio<span class="keyword">&lt;/a&gt;</span>
+        <span class="keyword">&lt;button</span> <span class="property">class</span>=<span class="value">"navbar-toggler"</span> <span class="property">type</span>=<span class="value">"button"</span> <span class="property">data-bs-toggle</span>=<span class="value">"collapse"</span> 
+                <span class="property">data-bs-target</span>=<span class="value">"#navbarNav"</span><span class="keyword">&gt;</span>
+            <span class="keyword">&lt;span</span> <span class="property">class</span>=<span class="value">"navbar-toggler-icon"</span><span class="keyword">&gt;&lt;/span&gt;</span>
+        <span class="keyword">&lt;/button&gt;</span>
+        <span class="keyword">&lt;div</span> <span class="property">class</span>=<span class="value">"collapse navbar-collapse"</span> <span class="property">id</span>=<span class="value">"navbarNav"</span><span class="keyword">&gt;</span>
+            <span class="keyword">&lt;ul</span> <span class="property">class</span>=<span class="value">"navbar-nav ms-auto"</span><span class="keyword">&gt;</span>
+                <span class="keyword">&lt;li</span> <span class="property">class</span>=<span class="value">"nav-item"</span><span class="keyword">&gt;</span>
+                    <span class="keyword">&lt;a</span> <span class="property">class</span>=<span class="value">"nav-link"</span> <span class="property">href</span>=<span class="value">"#"</span><span class="keyword">&gt;</span>Home<span class="keyword">&lt;/a&gt;</span>
+                <span class="keyword">&lt;/li&gt;</span>
+            <span class="keyword">&lt;/ul&gt;</span>
+        <span class="keyword">&lt;/div&gt;</span>
+    <span class="keyword">&lt;/div&gt;</span>
+<span class="keyword">&lt;/nav&gt;</span>
+
+<span class="comment">&lt;!-- Hero Section --&gt;</span>
+<span class="keyword">&lt;section</span> <span class="property">class</span>=<span class="value">"bg-light py-5"</span><span class="keyword">&gt;</span>
+    <span class="keyword">&lt;div</span> <span class="property">class</span>=<span class="value">"container"</span><span class="keyword">&gt;</span>
+        <span class="keyword">&lt;div</span> <span class="property">class</span>=<span class="value">"row align-items-center"</span><span class="keyword">&gt;</span>
+            <span class="keyword">&lt;div</span> <span class="property">class</span>=<span class="value">"col-lg-6"</span><span class="keyword">&gt;</span>
+                <span class="keyword">&lt;h1</span> <span class="property">class</span>=<span class="value">"display-4 fw-bold"</span><span class="keyword">&gt;</span>Welcome<span class="keyword">&lt;/h1&gt;</span>
+                <span class="keyword">&lt;p</span> <span class="property">class</span>=<span class="value">"lead"</span><span class="keyword">&gt;</span>This is a hero section created with Bootstrap.<span class="keyword">&lt;/p&gt;</span>
+            <span class="keyword">&lt;/div&gt;</span>
+        <span class="keyword">&lt;/div&gt;</span>
+    <span class="keyword">&lt;/div&gt;</span>
+<span class="keyword">&lt;/section&gt;</span>
+
+<span class="comment">&lt;!-- Skills Cards --&gt;</span>
+<span class="keyword">&lt;section</span> <span class="property">class</span>=<span class="value">"py-5"</span><span class="keyword">&gt;</span>
+    <span class="keyword">&lt;div</span> <span class="property">class</span>=<span class="value">"container"</span><span class="keyword">&gt;</span>
+        <span class="keyword">&lt;div</span> <span class="property">class</span>=<span class="value">"row g-4"</span><span class="keyword">&gt;</span>
+            <span class="keyword">&lt;div</span> <span class="property">class</span>=<span class="value">"col-md-4"</span><span class="keyword">&gt;</span>
+                <span class="keyword">&lt;div</span> <span class="property">class</span>=<span class="value">"card h-100 shadow-sm"</span><span class="keyword">&gt;</span>
+                    <span class="keyword">&lt;div</span> <span class="property">class</span>=<span class="value">"card-body text-center"</span><span class="keyword">&gt;</span>
+                        <span class="keyword">&lt;h5</span> <span class="property">class</span>=<span class="value">"card-title"</span><span class="keyword">&gt;</span>Frontend<span class="keyword">&lt;/h5&gt;</span>
+                        <span class="keyword">&lt;p</span> <span class="property">class</span>=<span class="value">"card-text"</span><span class="keyword">&gt;</span>HTML, CSS, JavaScript<span class="keyword">&lt;/p&gt;</span>
+                    <span class="keyword">&lt;/div&gt;</span>
+                <span class="keyword">&lt;/div&gt;</span>
+            <span class="keyword">&lt;/div&gt;</span>
+        <span class="keyword">&lt;/div&gt;</span>
+    <span class="keyword">&lt;/div&gt;</span>
+<span class="keyword">&lt;/section&gt;</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+               
+                <div id="bootstrap-output" class="tab-content" style="display: none;">
+                    <div class="code-content">
+                        <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+                            <div class="container">
+                                <a class="navbar-brand" href="#">My Portfolio</a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarExample">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarExample">
+                                    <ul class="navbar-nav ms-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#">Home</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">About</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Contact</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                        
+                        <section class="bg-light py-3 mb-4 rounded">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6">
+                                        <h1 class="display-6 fw-bold">Welcome</h1>
+                                        <p class="lead">This is a hero section created with Bootstrap.</p>
+                                        <button class="btn btn-primary">Get Started</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <section class="py-3">
+                            <div class="container">
+                                <h4 class="mb-3">Skills Cards</h4>
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <div class="card h-100 shadow-sm">
+                                            <div class="card-body text-center">
+                                                <h5 class="card-title">Frontend</h5>
+                                                <p class="card-text">HTML, CSS, JavaScript</p>
+                                                <button class="btn btn-sm btn-outline-primary">Learn More</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card h-100 shadow-sm">
+                                            <div class="card-body text-center">
+                                                <h5 class="card-title">Backend</h5>
+                                                <p class="card-text">Node.js, Express, Databases</p>
+                                                <button class="btn btn-sm btn-outline-primary">Learn More</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card h-100 shadow-sm">
+                                            <div class="card-body text-center">
+                                                <h5 class="card-title">Tools</h5>
+                                                <p class="card-text">Git, VS Code, Command Line</p>
+                                                <button class="btn btn-sm btn-outline-primary">Learn More</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="text-center">
+                <h4 class="mb-3">Web Development Learning Portfolio</h4>
+                <p class="text-muted mb-4">
+                    A comprehensive guide to modern web development technologies.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="btn btn-outline-primary me-2"><i class="bi bi-github me-1"></i> GitHub</a>
+                    <a href="#" class="btn btn-outline-primary me-2"><i class="bi bi-linkedin me-1"></i> LinkedIn</a>
+                    <a href="#" class="btn btn-outline-primary"><i class="bi bi-envelope me-1"></i> Contact</a>
+                </div>
+                <p class="text-muted small mt-4">
+                    © <span id="current-year"></span> Web Dev Portfolio. Created for educational purposes.
+                </p>
+            </div>
+        </div>
+    </footer>
+ 
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   
+    <script>
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+       
+        // Tab functionality
+        function showTab(tabId, button, section) {
+            const tabContents = button.parentNode.parentNode.parentNode.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.style.display = 'none';
+            });
+           
+            const tabs = button.parentNode.querySelectorAll('.code-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+           
+            document.getElementById(tabId).style.display = 'block';
+            button.classList.add('active');
+        }
+       
+        // JavaScript functionality for interactive demos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Counter functionality
+            let count = 0;
+            const counterDisplay = document.getElementById('counter-display');
+            const decrementBtn = document.getElementById('decrement');
+            const incrementBtn = document.getElementById('increment');
+           
+            function updateCounter() {
+                if (counterDisplay) counterDisplay.textContent = count;
+            }
+           
+            if (decrementBtn && incrementBtn) {
+                decrementBtn.addEventListener('click', function() {
+                    count--;
+                    updateCounter();
+                });
+               
+                incrementBtn.addEventListener('click', function() {
+                    count++;
+                    updateCounter();
+                });
+            }
+           
+            // Task Manager functionality
+            let tasks = ['Learn JavaScript', 'Build a project'];
+            const taskList = document.getElementById('task-list');
+            const taskInput = document.getElementById('task-input');
+            const addTaskBtn = document.getElementById('add-task');
+           
+            function renderTasks() {
+                if (taskList) {
+                    taskList.innerHTML = '';
+                    tasks.forEach((task, index) => {
+                        const li = document.createElement('li');
+                        li.className = 'list-group-item d-flex justify-content-between align-items-center';
+                        li.innerHTML = `
+                            <span>${task}</span>
+                            <button class="btn btn-sm btn-danger" onclick="removeTask(${index})">×</button>
+                        `;
+                        taskList.appendChild(li);
+                    });
+                }
+            }
+           
+            function addTask() {
+                if (taskInput) {
+                    const newTask = taskInput.value.trim();
+                    if (newTask) {
+                        tasks.push(newTask);
+                        taskInput.value = '';
+                        renderTasks();
+                    }
+                }
+            }
+           
+            window.removeTask = function(index) {
+                tasks.splice(index, 1);
+                renderTasks();
+            };
+           
+            if (addTaskBtn) {
+                addTaskBtn.addEventListener('click', addTask);
+            }
+           
+            if (taskInput) {
+                taskInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        addTask();
+                    }
+                });
+            }
+           
+            // Initialize
+            updateCounter();
+            renderTasks();
+        });
+       
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
